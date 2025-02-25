@@ -5,7 +5,7 @@ import plotly.express as px
 import io
 import base64
 from datetime import datetime
-
+import os
 # Initialize Dash app
 app = Dash(__name__, external_stylesheets=[dbc.themes.FLATLY])
 app.title = "Excel Analysis Dashboard"
@@ -627,5 +627,7 @@ app.index_string = '''
 </html>
 '''
 
+
 if __name__ == '__main__':
-    app.run_server(debug=True, port=8050)
+    port = int(os.environ.get("PORT", 8050))  # Use PORT from env, default to 8050
+    app.run_server(debug=False, host="0.0.0.0", port=port)
